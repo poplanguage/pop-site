@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <section data-component="hero">
+    <div data-slot="head">
+      <h1>Pop</h1>
+      <p>A statically typed, general-purpose language with the lightweight feel of Luau.</p>
+    </div>
+  </section>
+  <section data-component="why">
+    <div data-slot="head">
+      <h2>Why Pop?</h2>
+      <p>
+        Languages with lightweight syntax are often built around a dynamic runtime. Languages with strong
+        static guarantees often introduce more syntax, more punctuation, and more ceremony.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  [data-component="hero"] {
+    [data-slot="head"] {
+    }
+  }
+</style>
