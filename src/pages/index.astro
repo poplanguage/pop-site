@@ -12,10 +12,32 @@ import Layout from "../layouts/Layout.astro";
   <section data-component="why">
     <div data-slot="head">
       <h2>Why Pop?</h2>
-      <p>
-        Languages with lightweight syntax are often built around a dynamic runtime. Languages with strong
-        static guarantees often introduce more syntax, more punctuation, and more ceremony.
-      </p>
+    </div>
+    <div data-slot="reasons">
+      <ul>
+        <li>
+          <div>
+            <h3>Performance</h3>
+            <p>Pop compiler can produce efficient binaries with multiple backends support.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Native type-safety</h3>
+            <p>
+              The compiler has a reliable type system that works from the day zero, without any type erasure
+              or strange type check attributes. The type system has generic types, unions, optional values and
+              much more.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Productivity</h3>
+            <p>The syntax is clean and simpler to use.</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 </Layout>
@@ -23,6 +45,18 @@ import Layout from "../layouts/Layout.astro";
 <style>
   [data-component="hero"] {
     [data-slot="head"] {
+    }
+  }
+
+  [data-component="why"] {
+    & [data-slot="reasons"] {
+      & ul {
+        padding: 0;
+
+        & li {
+          list-style: none;
+        }
+      }
     }
   }
 </style>
