@@ -1,4 +1,4 @@
-name: Deploy Pop Book to GitHub Pages
+name: Deploy Pop website to GitHub Pages
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - '.github/workflows/deploy.yml'
       - 'public/**'
       - 'src/**'
-      - 'astro.config.mjs'
+      - 'astro.config.mts'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'tsconfig.json'

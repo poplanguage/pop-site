@@ -1,48 +1,33 @@
 ---
 import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Pop — Simple by nature. Powerful by design.",
+  description = "Pop is a native, strongly and statically typed programming language with the lightweight feel of Luau.",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#07181e" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/pop.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Pop Programming Language</title>
+    <title>{title}</title>
   </head>
   <body>
-    <main data-page="www">
-      <slot />
-
-      <footer>
-        <span>
-          <a href="https://github.com/poplanguage">GitHub</a>
-        </span>
-        <span>
-          <a href="/book">The Pop Book</a>
-        </span>
-      </footer>
-    </main>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <slot />
   </body>
 </html>
-
-<style>
-  [data-page="www"] {
-    display: flex;
-    flex-direction: column;
-    margin: 0 5rem 0 5rem;
-
-    @media (max-width: 768px) {
-      margin: 0 0.5rem 0 0.5rem;
-    }
-
-    & footer {
-      text-align: center;
-      justify-content: center;
-      display: flex;
-      gap: 32px;
-    }
-  }
-</style>

@@ -1,0 +1,182 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  tone?: "coral" | "mint" | "yellow" | "plain";
+  filename: string;
+  lines: string[];
+}
+
+const { number, title, tone = "plain", filename, lines } = Astro.props;
+---
+
+<article class:list={["feature-story", `tone-${tone}`]}>
+  <span class="feature-number">{number}</span>
+  <div class="feature-copy">
+    <h3>{title}</h3>
+    <p><slot /></p>
+  </div>
+  <div class="example-box">
+    <header><span aria-hidden="true"></span><code>{filename}</code><small>POP</small></header>
+    <pre><code>{lines.map((line) => <span class="example-line" set:html={line}></span>)}</code></pre>
+  </div>
+</article>
+
+<style>
+  .feature-story {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    align-content: start;
+    gap: 1rem 1.5rem;
+    min-height: 21rem;
+    padding: 1.6rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .feature-story:last-child { border-bottom: 1px solid var(--line); }
+
+  .feature-number {
+    align-self: start;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--pop-blue);
+    border-radius: 50%;
+    color: #0b7797;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+  }
+
+  .feature-copy { grid-column: 2; }
+
+  h3 {
+    margin: 0 0 0.9rem;
+    max-width: 13ch;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  p {
+    max-width: 35rem;
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.91rem;
+    line-height: 1.65;
+  }
+
+  .example-box {
+    grid-column: 2;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #b7d8de;
+    border-radius: 0.25rem;
+    background: #f8feff;
+    box-shadow: 12px 12px 0 #d1eaee;
+  }
+
+  .example-box header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    min-height: 2.4rem;
+    padding-inline: 0.85rem;
+    border-bottom: 1px solid #cce5e9;
+    color: #597780;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+  }
+
+  .example-box header > span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pop-blue);
+    box-shadow: 0 0 0 3px rgb(25 184 230 / 0.12);
+  }
+
+  .example-box header code { font-family: inherit; }
+
+  .example-box small {
+    justify-self: end;
+    color: #86a2a9;
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+  }
+
+  pre {
+    min-height: 7.8rem;
+    margin: 0;
+    padding: 1.25rem clamp(1rem, 3vw, 2rem);
+    overflow-x: auto;
+    max-width: 100%;
+    color: #17333c;
+    font-family: var(--font-mono);
+    font-size: clamp(0.68rem, 1.1vw, 0.82rem);
+    line-height: 1.65;
+  }
+
+  pre > code {
+    display: block;
+    min-width: max-content;
+    font-family: inherit;
+  }
+
+  .example-line {
+    display: block;
+    min-height: 1.65em;
+    white-space: pre;
+  }
+
+  :global(.mini-keyword) { color: #067fa4; font-weight: 650; }
+  :global(.mini-type) { color: #005f9d; }
+  :global(.mini-value) { color: #9657a7; }
+  :global(.mini-string) { color: #16856f; }
+  :global(.mini-comment) { color: #78949c; font-style: italic; }
+  :global(.mini-command) { color: #067fa4; font-weight: 700; }
+  :global(.mini-success) { color: #147b67; }
+
+  .tone-coral .feature-number,
+  .tone-mint .feature-number { color: var(--paper); background: var(--pop-deep); }
+
+  .tone-mint .example-box {
+    border-color: #0d6986;
+    color: var(--paper);
+    background: #08232c;
+    box-shadow: 12px 12px 0 var(--pop-blue);
+  }
+
+  .tone-mint .example-box header {
+    border-bottom-color: rgb(184 244 255 / 0.13);
+    color: #85aeb9;
+  }
+
+  .tone-mint pre { color: #d9f8fb; }
+  .tone-mint :global(.mini-command) { color: var(--pop-cyan); }
+  .tone-mint :global(.mini-success) { color: #72ddc1; }
+
+  @media (max-width: 900px) {
+    .feature-story {
+      grid-template-columns: 2.5rem 1fr;
+    }
+
+  }
+
+  @media (max-width: 600px) {
+    .feature-story {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      padding-block: 2.5rem;
+    }
+
+    .feature-number { grid-column: 1; }
+    .feature-copy { grid-column: 1; }
+    .example-box { grid-column: 1; box-shadow: 6px 6px 0 #d1eaee; }
+    .tone-mint .example-box { box-shadow: 6px 6px 0 var(--pop-blue); }
+  }
+</style>

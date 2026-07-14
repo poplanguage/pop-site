@@ -1,0 +1,131 @@
+---
+import PopMark from "./PopMark.astro";
+import RepoSource from "./RepoSource.astro";
+
+const bookUrl = "https://poplanguage.github.io/book/";
+---
+
+<header class="site-header shell">
+  <a class="brand" href="#top" aria-label="Pop language home">
+    <PopMark size={48} />
+    <span>Pop</span>
+  </a>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="#language"><small>01</small> Language</a>
+    <a href="#toolchain"><small>02</small> Toolchain</a>
+    <a href={bookUrl}>
+      <small>03</small>
+      <span class="link-label">Book <span class="external" aria-hidden="true">↗</span></span>
+    </a>
+  </nav>
+
+  <RepoSource />
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: 96px;
+    border-bottom: 1px solid var(--line-dark);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    gap: 0.55rem;
+    color: var(--paper);
+    font-size: 1.16rem;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+  }
+
+  .main-nav {
+    position: absolute;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2.2rem);
+    transform: translateX(-50%);
+  }
+
+  .main-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--muted-on-dark);
+    font-size: 0.86rem;
+    font-weight: 650;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .main-nav small {
+    color: #52737d;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    font-weight: 500;
+  }
+
+  .external { font-size: 0.62rem; }
+
+  .link-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+    white-space: nowrap;
+  }
+
+  .main-nav a:hover {
+    color: var(--paper);
+  }
+
+  @media (max-width: 900px) {
+    .site-header {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0 0.75rem;
+      min-height: 0;
+      padding-top: 0.75rem;
+    }
+
+    .brand :global(.pop-mark) {
+      width: 36px;
+      height: 36px;
+    }
+
+    .brand {
+      gap: 0.45rem;
+      font-size: 1rem;
+    }
+
+    .main-nav {
+      position: static;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      width: 100%;
+      margin-top: 0.75rem;
+      border-top: 1px solid var(--line-dark);
+      transform: none;
+    }
+
+    .main-nav a {
+      justify-content: center;
+      min-width: 0;
+      min-height: 2.8rem;
+      padding-inline: 0.35rem;
+      border-right: 1px solid var(--line-dark);
+      font-size: 0.72rem;
+    }
+
+    .main-nav a:last-child { border-right: 0; }
+    .main-nav small { font-size: 0.45rem; }
+    .external { flex: none; }
+  }
+</style>
