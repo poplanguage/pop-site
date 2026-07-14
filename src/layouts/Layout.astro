@@ -13,19 +13,27 @@ import "../styles/global.css";
     <title>Pop Programming Language</title>
   </head>
   <body>
-    <main>
+    <main data-page="www">
       <slot />
     </main>
   </body>
 </html>
 
-<!--
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  [data-page="www"] {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5rem 0 5rem;
+
+    @media (max-width: 768px) {
+      margin: 0 0.5rem 0 0.5rem;
+    }
+
+    & footer {
+      text-align: center;
+      justify-content: center;
+      display: flex;
+      gap: 32px;
+    }
+  }
 </style>
--->
