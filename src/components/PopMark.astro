@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { size = 36 } = Astro.props;
+const popMarkUrl = `${import.meta.env.BASE_URL}/pop.svg`;
 ---
 
-<img class="pop-mark" src="/pop.svg" width={size} height={size} alt="" aria-hidden="true" />
+<img class="pop-mark" src={popMarkUrl} width={size} height={size} alt="" aria-hidden="true" />

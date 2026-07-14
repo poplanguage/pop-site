@@ -1,3 +1,7 @@
+---
+const popMarkUrl = `${import.meta.env.BASE_URL}/pop.svg`;
+---
+
 <div class="bubble-field" aria-hidden="true">
   <span class="bubble bubble-a"></span>
   <span class="bubble bubble-b"></span>
@@ -6,7 +10,7 @@
   <span class="bubble bubble-e"></span>
   <span class="orb orb-a"></span>
   <span class="orb orb-b"></span>
-  <img class="bubble-echo" src="/pop.svg" alt="" />
+  <img class="bubble-echo" src={popMarkUrl} alt="" />
 </div>
 
 <style>
